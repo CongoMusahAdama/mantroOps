@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --papaya: #f1583b;
+  --papaya-soft: rgba(241, 88, 59, 0.1);
+  --foggy: #4f4e4f;
+  --verdemar: #00a691;
+  --verdemar-soft: rgba(0, 166, 145, 0.1);
+  --white: #ffffff;
+  --surface: #f7f7f7;
+  --border: #e8e8e8;
+  --border-strong: #d4d4d4;
+}
+
+@theme inline {
+  --color-papaya: var(--papaya);
+  --color-papaya-soft: var(--papaya-soft);
+  --color-foggy: var(--foggy);
+  --color-verdemar: var(--verdemar);
+  --color-verdemar-soft: var(--verdemar-soft);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --font-display: var(--font-frosty), system-ui, sans-serif;
+  --font-body: var(--font-jakarta), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--white);
+  color: var(--foggy);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* No blur or backdrop blur anywhere on the site */
+*,
+*::before,
+*::after {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+::selection {
+  background: var(--papaya-soft);
+  color: var(--foggy);
+}
