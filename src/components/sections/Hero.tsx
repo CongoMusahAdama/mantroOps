@@ -3,7 +3,6 @@
 import { CircledWord } from "@/components/ui/CircledWord";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { MaintenanceSchedulePreview } from "@/components/sections/MaintenanceSchedulePreview";
-import { MaintenanceScheduleMobilePreview } from "@/components/sections/MaintenanceScheduleMobilePreview";
 
 export function Hero() {
   return (
@@ -54,12 +53,7 @@ export function Hero() {
           </FadeIn>
         </div>
 
-        <div className="flex justify-center lg:hidden">
-          <MaintenanceScheduleMobilePreview showOffline={false} direction="up" />
-        </div>
-        <div className="hidden lg:block">
-          <MaintenanceSchedulePreview />
-        </div>
+        <MaintenanceSchedulePreview />
       </div>
     </section>
   );
