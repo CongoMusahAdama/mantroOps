@@ -6,8 +6,8 @@ import { Logo } from "@/components/ui/Logo";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const MOBILE_QUERY = "(max-width: 767px)";
-const SHOW_MS = 1200;
-const EXIT_MS = 550;
+const SHOW_MS = 3000;
+const EXIT_MS = 650;
 
 export function MobileSplash() {
   const [active, setActive] = useState(false);
