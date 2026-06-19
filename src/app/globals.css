@@ -10,6 +10,13 @@
   --surface: #f7f7f7;
   --border: #e8e8e8;
   --border-strong: #d4d4d4;
+  --nav-height: 4rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --nav-height: 8.75rem;
+  }
 }
 
 @theme inline {
@@ -27,6 +34,8 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px) + 0.75rem);
+  overflow-x: clip;
 }
 
 body {
@@ -35,6 +44,9 @@ body {
   font-family: var(--font-jakarta), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
 }
 
 /* No blur or backdrop blur anywhere on the site */

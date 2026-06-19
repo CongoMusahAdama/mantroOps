@@ -30,7 +30,7 @@ function TimelineDot({ status }: { status: (typeof TIMELINE)[number]["status"] }
 export function Timeline() {
   return (
     <section id="timeline" className="py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-6 sm:px-10 xl:px-12">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 xl:px-12">
         <SectionHeading
           eyebrow="Our journey"
           title="Building carefully, launching with purpose"

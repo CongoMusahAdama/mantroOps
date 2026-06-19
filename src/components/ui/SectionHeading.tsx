@@ -129,7 +129,7 @@ export function SectionHeading({
       </motion.h2>
 
       {description && (
-        <p className="mt-4 text-lg leading-relaxed text-foggy">
+        <p className="mt-4 text-base leading-relaxed text-foggy sm:text-lg">
           {description}
         </p>
       )}

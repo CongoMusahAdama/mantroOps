@@ -86,13 +86,13 @@ export function WhyMantroOps() {
                     {row.factor}
                   </p>
                   <p className="text-sm leading-relaxed text-foggy sm:border-l sm:border-border sm:px-5 sm:py-4">
-                    <span className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-foggy/50 sm:hidden">
+                    <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-foggy/50 sm:hidden">
                       Global tools
                     </span>
                     {row.global}
                   </p>
                   <p className="rounded-xl border border-verdemar/20 bg-verdemar-soft px-4 py-3 text-sm font-medium leading-relaxed text-verdemar sm:rounded-none sm:border-0 sm:px-5 sm:py-4">
-                    <span className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-verdemar/70 sm:hidden">
+                    <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-verdemar/70 sm:hidden">
                       mantroOps
                     </span>
                     {row.mantro}

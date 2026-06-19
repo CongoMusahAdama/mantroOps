@@ -26,12 +26,6 @@ const ICONS = {
   "wifi-off": WifiOff,
 } as const;
 
-const scrollDirections = [
-  { x: -32, y: 16 },
-  { x: 32, y: 16 },
-  { x: 0, y: 28 },
-] as const;
-
 type Feature = (typeof FEATURES)[number];
 
 function FeatureTab({
@@ -46,15 +40,14 @@ function FeatureTab({
   onSelect: () => void;
 }) {
   const Icon = ICONS[feature.icon];
-  const direction = scrollDirections[index % scrollDirections.length];
 
   return (
     <motion.button
       type="button"
-      initial={{ x: direction.x, y: direction.y }}
-      whileInView={{ x: 0, y: 0 }}
+      initial={{ y: 16, opacity: 1 }}
+      whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true, amount: 0.3, margin: "0px 0px -30px 0px" }}
-      transition={{ duration: 0.55, delay: index * 0.06, ease }}
+      transition={{ duration: 0.5, delay: index * 0.06, ease }}
       onClick={onSelect}
       aria-pressed={isActive}
       className={`flex w-full items-start gap-3 rounded-xl border px-4 py-3.5 text-left transition-colors duration-200 sm:gap-4 sm:px-5 sm:py-4 ${
@@ -80,11 +73,39 @@ function FeatureTab({
         >
           {feature.title}
         </span>
-        <span className="mt-0.5 block text-sm leading-snug text-foggy line-clamp-1">
+        <span className="mt-0.5 block text-sm leading-snug text-foggy line-clamp-2 lg:line-clamp-1">
           {feature.description}
         </span>
       </span>
     </motion.button>
+  );
+}
+
+function FeatureChip({
+  feature,
+  isActive,
+  onSelect,
+}: {
+  feature: Feature;
+  isActive: boolean;
+  onSelect: () => void;
+}) {
+  const Icon = ICONS[feature.icon];
+
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      aria-pressed={isActive}
+      className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-colors ${
+        isActive
+          ? "border-papaya/30 bg-papaya-soft text-papaya"
+          : "border-border bg-white text-foggy"
+      }`}
+    >
+      <Icon size={16} strokeWidth={1.75} />
+      {feature.title}
+    </button>
   );
 }
 
@@ -97,29 +118,29 @@ function FeatureDetail({ feature }: { feature: Feature }) {
       animate={{ y: 0 }}
       exit={{ y: -6 }}
       transition={{ duration: 0.35, ease }}
-      className="rounded-2xl border border-border bg-white p-6 sm:p-8 lg:p-10"
+      className="rounded-2xl border border-border bg-white p-5 sm:p-8 lg:p-10"
     >
       <div className="flex items-start gap-4">
-        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-papaya/20 bg-papaya-soft text-papaya">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-papaya/20 bg-papaya-soft text-papaya sm:h-12 sm:w-12">
           <Icon size={22} strokeWidth={1.75} />
         </span>
-        <div>
+        <div className="min-w-0">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-verdemar">
             Planned capability
           </p>
-          <h3 className="mt-1 font-display text-2xl text-foggy sm:text-[1.65rem]">
+          <h3 className="mt-1 font-display text-xl text-foggy sm:text-2xl lg:text-[1.65rem]">
             {feature.title}
           </h3>
         </div>
       </div>
 
-      <p className="mt-5 text-base leading-relaxed text-foggy">
+      <p className="mt-4 text-sm leading-relaxed text-foggy sm:mt-5 sm:text-base">
         {feature.description}
       </p>
 
-      <div className="mt-6 border-t border-border pt-6">
+      <div className="mt-5 border-t border-border pt-5 sm:mt-6 sm:pt-6">
         <p className="text-sm font-semibold text-foggy">What it will do</p>
-        <ul className="mt-4 space-y-3">
+        <ul className="mt-3 space-y-2.5 sm:mt-4 sm:space-y-3">
           {feature.details.map((item) => (
             <li
               key={item}
@@ -140,7 +161,7 @@ export function Features() {
   const activeFeature = FEATURES[activeIndex];
 
   return (
-    <section id="features" className="bg-surface py-20 sm:py-24">
+    <section id="features" className="overflow-x-clip bg-surface py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading
           eyebrow="Features"
@@ -151,7 +172,28 @@ export function Features() {
           className="max-w-2xl"
         />
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-[minmax(0,22rem)_1fr] lg:items-start lg:gap-8">
+        {/* Mobile: detail on top, swipeable feature chips below */}
+        <div className="mt-10 lg:hidden">
+          <AnimatePresence mode="wait">
+            <FeatureDetail key={activeFeature.title} feature={activeFeature} />
+          </AnimatePresence>
+
+          <div className="-mx-5 mt-4 overflow-x-auto px-5 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex w-max gap-2">
+              {FEATURES.map((feature, index) => (
+                <FeatureChip
+                  key={feature.title}
+                  feature={feature}
+                  isActive={activeIndex === index}
+                  onSelect={() => setActiveIndex(index)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop: sidebar tabs + sticky detail */}
+        <div className="mt-12 hidden gap-8 lg:grid lg:grid-cols-[minmax(0,22rem)_1fr] lg:items-start">
           <div className="flex flex-col gap-1.5">
             {FEATURES.map((feature, index) => (
               <FeatureTab
@@ -165,11 +207,11 @@ export function Features() {
           </div>
 
           <motion.div
-            initial={{ x: 32 }}
-            whileInView={{ x: 0 }}
+            initial={{ y: 20, opacity: 1 }}
+            whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true, amount: 0.2, margin: "0px 0px -30px 0px" }}
             transition={{ duration: 0.6, ease }}
-            className="lg:sticky lg:top-24"
+            className="sticky top-[calc(var(--nav-height)+1rem)]"
           >
             <AnimatePresence mode="wait">
               <FeatureDetail key={activeFeature.title} feature={activeFeature} />

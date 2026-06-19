@@ -81,7 +81,7 @@ export function FadeInMedia({
   className,
   ...props
 }: FadeInMediaProps) {
-  const offset = 28;
+  const offset = 20;
   const x =
     direction === "left" ? -offset : direction === "right" ? offset : 0;
   const y =

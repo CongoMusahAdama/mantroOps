@@ -7,7 +7,8 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-12 sm:px-10 xl:px-12">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-sm">
-            <Logo height={104} />
+            <Logo height={72} className="sm:hidden" />
+            <Logo height={104} className="hidden sm:block" />
             <p className="mt-4 text-sm leading-relaxed text-white/80">
               Maintenance and operations, built for engineering firms in Ghana.
               Simple, field-ready, and coming soon.

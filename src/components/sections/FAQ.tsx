@@ -29,11 +29,13 @@ export function FAQ() {
                 <div key={item.question}>
                   <button
                     type="button"
-                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-surface/60"
+                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-surface/60 active:bg-surface/80 sm:py-4"
                     aria-expanded={isOpen}
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                   >
-                    <span className="font-medium text-foggy">{item.question}</span>
+                    <span className="min-w-0 flex-1 pr-2 font-medium text-foggy">
+                      {item.question}
+                    </span>
                     <motion.span
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
