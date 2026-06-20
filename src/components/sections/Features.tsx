@@ -7,6 +7,7 @@ import {
   CalendarClock,
   CheckCircle2,
   ClipboardList,
+  DraftingCompass,
   Layers,
   ShieldCheck,
   WifiOff,
@@ -18,6 +19,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 const ICONS = {
   layers: Layers,
+  "drafting-compass": DraftingCompass,
   clipboard: ClipboardList,
   calendar: CalendarClock,
   "check-circle": CheckCircle2,

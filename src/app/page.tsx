@@ -3,12 +3,14 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Vision } from "@/components/sections/Vision";
 import { WhyMantroOps } from "@/components/sections/WhyMantroOps";
+import { CompareSection } from "@/components/sections/CompareSection";
 import { Features } from "@/components/sections/Features";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { OfflineSection } from "@/components/sections/OfflineSection";
 import { RolesSection } from "@/components/sections/RolesSection";
 import { Timeline } from "@/components/sections/Timeline";
 import { FAQ } from "@/components/sections/FAQ";
+import { SuccessSection } from "@/components/sections/SuccessSection";
 import { Closing } from "@/components/sections/Closing";
 
 export default function Home() {
@@ -19,12 +21,14 @@ export default function Home() {
         <Hero />
         <Vision />
         <WhyMantroOps />
+        <CompareSection />
         <Features />
         <HowItWorks />
         <OfflineSection />
         <RolesSection />
         <Timeline />
         <FAQ />
+        <SuccessSection />
         <Closing />
       </main>
       <Footer />

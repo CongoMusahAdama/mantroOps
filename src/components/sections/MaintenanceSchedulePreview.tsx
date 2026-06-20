@@ -75,7 +75,7 @@ export function MaintenanceSchedulePreview() {
     <FadeInMedia
       direction="right"
       delay={0.1}
-      className="w-full max-w-2xl lg:ml-auto"
+      className="w-full min-w-0 max-w-2xl lg:ml-auto"
     >
       <div className="overflow-hidden rounded-xl border border-border bg-white shadow-[0_24px_64px_-24px_rgba(79,78,79,0.2)]">
         {/* Title bar */}
@@ -113,7 +113,7 @@ export function MaintenanceSchedulePreview() {
           <div className="space-y-3 p-2.5 sm:p-3">
             <div>
               <SectionTitle icon={Tag}>Asset Information</SectionTitle>
-              <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3">
+              <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
                 <Field label="Asset No." placeholder="..." />
                 <Field label="Asset Name" placeholder="Auto-filled from asset lookup" />
                 <Field label="Asset Category" placeholder="Auto-filled from asset lookup" />
@@ -125,7 +125,7 @@ export function MaintenanceSchedulePreview() {
 
             <div>
               <SectionTitle icon={Calendar}>Maintenance Schedule</SectionTitle>
-              <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3">
+              <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
                 <Field label="Schedule Ref. No." value="Auto-generated" />
                 <Field label="Maintenance Type" placeholder="Select type" />
                 <Field label="Schedule Frequency" placeholder="Select frequency" />
@@ -151,8 +151,8 @@ export function MaintenanceSchedulePreview() {
             </div>
           </div>
 
-          {/* Sidebar */}
-          <div className="space-y-3 border-t border-border bg-surface p-2.5 lg:border-t-0 lg:border-l lg:p-3">
+          {/* Sidebar — desktop only to keep mobile hero compact */}
+          <div className="hidden space-y-3 border-t border-border bg-surface p-2.5 lg:block lg:border-t-0 lg:border-l lg:p-3">
             <div>
               <SectionTitle icon={Bell}>Notification Settings</SectionTitle>
               <p className="mt-2 text-[9px] font-semibold uppercase tracking-wide text-foggy/55">

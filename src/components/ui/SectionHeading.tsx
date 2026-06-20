@@ -119,7 +119,7 @@ export function SectionHeading({
 
       <motion.h2
         variants={titleGroupVariants}
-        className={`font-display text-3xl font-medium leading-snug tracking-tight text-foggy sm:text-4xl sm:leading-snug ${
+        className={`text-balance font-display text-2xl font-medium leading-snug tracking-tight text-foggy sm:text-3xl sm:leading-snug lg:text-4xl ${
           eyebrow ? "mt-5" : ""
         }`}
       >

@@ -7,8 +7,8 @@ import {
 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion/FadeIn";
-import { COMPARISON_ROWS, PAIN_POINTS } from "@/lib/constants";
+import { StaggerContainer, StaggerItem } from "@/components/motion/FadeIn";
+import { PAIN_POINTS } from "@/lib/constants";
 
 const ICONS: Record<(typeof PAIN_POINTS)[number]["icon"], LucideIcon> = {
   "wifi-off": WifiOff,
@@ -50,58 +50,6 @@ export function WhyMantroOps() {
             );
           })}
         </StaggerContainer>
-
-        <FadeIn className="mt-14">
-          <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-papaya">
-                Where we win
-              </p>
-              <h3 className="mt-2 font-display text-2xl text-foggy sm:text-3xl">
-                Built for adoption, not shelfware
-              </h3>
-            </div>
-            <p className="max-w-sm text-sm text-foggy">
-              We meet teams where they already are — on WhatsApp, with local vendors,
-              and paying in Cedis.
-            </p>
-          </div>
-
-          <div className="overflow-hidden rounded-2xl border border-border bg-white">
-            <div className="hidden grid-cols-[1.1fr_1.4fr_1.4fr] border-b border-border bg-surface text-xs font-semibold uppercase tracking-wide text-foggy sm:grid">
-              <div className="px-5 py-3">Factor</div>
-              <div className="border-l border-border px-5 py-3">Global tools</div>
-              <div className="border-l border-border bg-papaya-soft px-5 py-3 text-papaya">
-                mantroOps
-              </div>
-            </div>
-
-            <div className="divide-y divide-border">
-              {COMPARISON_ROWS.map((row) => (
-                <div
-                  key={row.factor}
-                  className="grid gap-3 p-5 sm:grid-cols-[1.1fr_1.4fr_1.4fr] sm:gap-0 sm:p-0"
-                >
-                  <p className="text-sm font-semibold text-foggy sm:px-5 sm:py-4">
-                    {row.factor}
-                  </p>
-                  <p className="text-sm leading-relaxed text-foggy sm:border-l sm:border-border sm:px-5 sm:py-4">
-                    <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-foggy/50 sm:hidden">
-                      Global tools
-                    </span>
-                    {row.global}
-                  </p>
-                  <p className="rounded-xl border border-verdemar/20 bg-verdemar-soft px-4 py-3 text-sm font-medium leading-relaxed text-verdemar sm:rounded-none sm:border-0 sm:px-5 sm:py-4">
-                    <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-verdemar/70 sm:hidden">
-                      mantroOps
-                    </span>
-                    {row.mantro}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
       </div>
     </section>
   );

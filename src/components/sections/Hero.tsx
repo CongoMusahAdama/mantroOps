@@ -7,7 +7,7 @@ import { MaintenanceSchedulePreview } from "@/components/sections/MaintenanceSch
 export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-border pt-[calc(var(--nav-height)+env(safe-area-inset-top,0px)+1.5rem)] pb-12 sm:pb-16 md:pb-24">
-      <div className="relative mx-auto grid max-w-7xl items-start gap-10 px-5 sm:px-8 md:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-12 xl:gap-16 xl:px-12">
+      <div className="relative mx-auto grid max-w-7xl min-w-0 items-start gap-8 px-5 sm:px-8 sm:gap-10 md:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-12 xl:gap-16 xl:px-12">
         <div className="max-w-xl lg:pt-4">
           <FadeIn delay={0.05}>
             <h1 className="font-display text-[2.1rem] leading-[1.1] font-medium tracking-tight text-foggy sm:text-[2.35rem] sm:leading-[1.08] md:text-5xl lg:text-[3.15rem]">
@@ -53,7 +53,9 @@ export function Hero() {
           </FadeIn>
         </div>
 
-        <MaintenanceSchedulePreview />
+        <div className="min-w-0">
+          <MaintenanceSchedulePreview />
+        </div>
       </div>
     </section>
   );

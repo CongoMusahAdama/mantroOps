@@ -1,11 +1,14 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
+import { SectionPhoto } from "@/components/ui/SectionPhoto";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion/FadeIn";
 import { Laptop, Smartphone } from "lucide-react";
 
 const ROLES = [
   {
     role: "For managers",
+    image: "/images/manager-office.png",
+    imageAlt: "Engineering manager reviewing maintenance operations on a laptop",
     items: [
       "Web dashboard on office laptops for setup, oversight, and reporting",
       "Full visibility across assets and work orders",
@@ -17,6 +20,8 @@ const ROLES = [
   },
   {
     role: "For technicians",
+    image: "/images/field-technician-site.png",
+    imageAlt: "Field technician working at an industrial site with mobile tools",
     items: [
       "Offline mobile app for assigned phones and tablets on site",
       "Simple task list — what to do, where, and when",
@@ -43,19 +48,28 @@ export function RolesSection() {
         <StaggerContainer className="mt-12 grid gap-5 lg:grid-cols-2">
           {ROLES.map((group, index) => (
             <StaggerItem key={group.role} delay={index * 0.08}>
-              <Card className="h-full">
-                <h3 className="font-display text-2xl text-foggy">{group.role}</h3>
-                <ul className="mt-5 space-y-3">
-                  {group.items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-start gap-3 text-sm leading-relaxed text-foggy"
-                    >
-                      <span className="mt-2 h-1 w-4 shrink-0 rounded-full bg-papaya/70" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+              <Card className="h-full overflow-hidden p-0">
+                <SectionPhoto
+                  src={group.image}
+                  alt={group.imageAlt}
+                  aspect="video"
+                  flush
+                  direction={index === 0 ? "right" : "left"}
+                />
+                <div className="p-6 sm:p-7">
+                  <h3 className="font-display text-xl text-foggy sm:text-2xl">{group.role}</h3>
+                  <ul className="mt-5 space-y-3">
+                    {group.items.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-3 text-sm leading-relaxed text-foggy"
+                      >
+                        <span className="mt-2 h-1 w-4 shrink-0 rounded-full bg-papaya/70" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </Card>
             </StaggerItem>
           ))}

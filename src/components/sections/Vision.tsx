@@ -1,5 +1,6 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
+import { SectionPhoto } from "@/components/ui/SectionPhoto";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { StaggerContainer, StaggerItem } from "@/components/motion/FadeIn";
 
@@ -37,7 +38,15 @@ export function Vision() {
           description="Instead of forcing teams into complicated tools, MantroOps gives managers and technicians a straightforward system for the work they do every day."
         />
 
-        <StaggerContainer className="mt-12 grid gap-4 sm:grid-cols-2">
+        <SectionPhoto
+          src="/images/engineers-collaborating.png"
+          alt="Engineering team collaborating at an industrial maintenance site"
+          aspect="wide"
+          className="mt-10"
+          direction="none"
+        />
+
+        <StaggerContainer className="mt-10 grid gap-4 sm:grid-cols-2">
           {POINTS.map((point, index) => (
             <StaggerItem key={point.title} delay={index * 0.06}>
               <Card className="h-full">

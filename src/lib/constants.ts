@@ -20,6 +20,18 @@ export const FEATURES = [
     ],
   },
   {
+    title: "P&IDs & engineering drawings",
+    description:
+      "Link piping and instrumentation diagrams and engineering drawings to assets and work orders — so your team has the right reference on site.",
+    icon: "drafting-compass" as const,
+    details: [
+      "Attach P&IDs, schematics, and layout drawings to equipment records",
+      "Open the relevant diagram from a work order before work begins",
+      "View drawings on mobile — including offline in the field",
+      "Keep document versions tied to assets for audits and handovers",
+    ],
+  },
+  {
     title: "Work orders",
     description:
       "Create, assign, and close work orders from the office or directly from site.",
@@ -123,29 +135,67 @@ export const PAIN_POINTS = [
 
 export const COMPARISON_ROWS = [
   {
+    factor: "Scope",
+    others: "Many modules — IoT, fleet, LMS, AI dashboards, and more",
+    mantro: "One focused loop: assets, work orders, maintenance, safety, approvals",
+  },
+  {
     factor: "Connectivity",
-    global: "No or limited offline capability",
-    mantro: "Full offline-first capability",
+    others: "Cloud-first; offline often a paid add-on or limited",
+    mantro: "Offline-first from day one — work on site, sync when connected",
+  },
+  {
+    factor: "Field experience",
+    others: "Office-configured systems with a mobile app attached",
+    mantro: "Built for technicians on basic phones — simple enough to use daily",
+  },
+  {
+    factor: "Engineering drawings",
+    others: "Generic document storage, if supported at all",
+    mantro: "P&IDs and drawings linked to assets and work orders on site",
   },
   {
     factor: "Alerts",
-    global: "Email or app notifications only",
-    mantro: "Built-in WhatsApp and SMS alerts",
+    others: "Email or in-app notifications only",
+    mantro: "WhatsApp and SMS alerts where your team already works",
   },
   {
     factor: "Procurement",
-    global: "USD only, no local vendor tracking",
-    mantro: "GHS pricing and local suppliers",
+    others: "USD pricing; no local vendor or parts tracking",
+    mantro: "GHS pricing and local supplier tracking",
   },
   {
     factor: "Compliance",
-    global: "No local regulatory framework",
-    mantro: "One-tap EPA and GNPC reporting",
+    others: "Generic templates; no local regulatory framework",
+    mantro: "Structured for EPA, GNPC, and your firm's own safety rules",
   },
   {
     factor: "Pricing and setup",
-    global: "High USD subscription; months to onboard",
-    mantro: "Affordable GHS pricing; onboard in days",
+    others: "Per-user USD subscriptions; weeks or months to onboard",
+    mantro: "Affordable for mid-size firms; onboard in days, not months",
+  },
+] as const;
+
+export const MARKET_APPROACHES = [
+  {
+    label: "Global CMMS platforms",
+    summary: "Broad feature sets, USD pricing, and AI-heavy dashboards built for large Western operations.",
+    mantro: "We keep the maintenance essentials and cut what mid-size Ghanaian firms never use.",
+  },
+  {
+    label: "Enterprise asset management",
+    summary: "Full lifecycle programs with consultants, integrations, and long rollouts.",
+    mantro: "We skip the enterprise overhead — register assets, assign work, and go.",
+  },
+  {
+    label: "Industrial plant suites",
+    summary: "Deep manufacturing modules — downtime monitors, quality, lab, and SHEQ in one heavy system.",
+    mantro: "We focus on engineering contractors and field service teams, not full factory control rooms.",
+  },
+  {
+    label: "Simple facility tools",
+    summary: "Easy QR ticketing for buildings, schools, and estates — light on industrial work.",
+    mantro: "We match that simplicity, but for plant equipment, P&IDs, permits, and compliance.",
   },
 ] as const;
 
