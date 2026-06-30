@@ -9,6 +9,7 @@ export const NAV_LINKS = [
 export const FEATURES = [
   {
     title: "Asset tracking",
+    tier: "core" as const,
     description:
       "Equipment history, locations, and documents in one place — always accessible to your team.",
     icon: "layers" as const,
@@ -21,6 +22,7 @@ export const FEATURES = [
   },
   {
     title: "P&IDs & engineering drawings",
+    tier: "phase2" as const,
     description:
       "Link piping and instrumentation diagrams and engineering drawings to assets and work orders — so your team has the right reference on site.",
     icon: "drafting-compass" as const,
@@ -33,6 +35,7 @@ export const FEATURES = [
   },
   {
     title: "Work orders",
+    tier: "core" as const,
     description:
       "Create, assign, and close work orders from the office or directly from site.",
     icon: "clipboard" as const,
@@ -46,6 +49,7 @@ export const FEATURES = [
   },
   {
     title: "Maintenance",
+    tier: "core" as const,
     description:
       "Plan, schedule, and track maintenance across your assets — whatever type the job requires.",
     icon: "calendar" as const,
@@ -58,6 +62,7 @@ export const FEATURES = [
   },
   {
     title: "Safety & permits",
+    tier: "industry" as const,
     description:
       "Every engineering firm has its own safety procedures. MantroOps lets you configure and follow yours — not a generic one-size-fits-all checklist.",
     icon: "shield-check" as const,
@@ -70,18 +75,20 @@ export const FEATURES = [
   },
   {
     title: "Approvals",
+    tier: "core" as const,
     description:
-      "Clear approval workflows with a full audit trail for accountability.",
+      "Route requests through trackable approval chains with a full audit trail.",
     icon: "check-circle" as const,
     details: [
       "Define who approves what — by role or site",
       "Full audit trail of every decision",
       "Pending items surfaced for managers",
-      "Accountability built into every workflow",
+      "No more lost WhatsApp threads for sign-offs",
     ],
   },
   {
     title: "Reporting",
+    tier: "core" as const,
     description:
       "Compliance-ready records and exportable reports when you need them.",
     icon: "bar-chart" as const,
@@ -93,7 +100,34 @@ export const FEATURES = [
     ],
   },
   {
+    title: "Multi-site tracking",
+    tier: "core" as const,
+    description:
+      "Manage assets and teams across multiple sites, branches, and field locations.",
+    icon: "map-pin" as const,
+    details: [
+      "Organise equipment by site, branch, or project",
+      "Assign technicians to the right location",
+      "Compare maintenance activity across sites",
+      "Built for firms spread across Tema, Takoradi, Obuasi, and beyond",
+    ],
+  },
+  {
+    title: "Document attachments",
+    tier: "core" as const,
+    description:
+      "Store manuals, photos, and compliance files against assets and work orders.",
+    icon: "file-stack" as const,
+    details: [
+      "Attach manuals, photos, and compliance documents to equipment",
+      "Keep files linked to assets and maintenance history",
+      "Open documents from a work order before work begins",
+      "View files on mobile — including offline in the field",
+    ],
+  },
+  {
     title: "Offline-first",
+    tier: "platform" as const,
     description:
       "Keep working without signal. Changes sync automatically when you reconnect.",
     icon: "wifi-off" as const,
@@ -104,7 +138,28 @@ export const FEATURES = [
       "Built for sites with unreliable connectivity",
     ],
   },
+  {
+    title: "Predictive maintenance AI",
+    tier: "ai" as const,
+    description:
+      "Learns from your maintenance data to predict failures before they happen — and tells your team exactly what to do.",
+    icon: "sparkles" as const,
+    details: [
+      "Predictive — spots patterns in logs and warns before a breakdown",
+      "Prescriptive — recommends the exact action and when to take it",
+      "Alerts on the manager dashboard and technician mobile app",
+      "Gets smarter over time — trained on your equipment in Ghanaian conditions",
+    ],
+  },
 ] as const;
+
+export const FEATURE_TIER_LABELS = {
+  core: "Core module",
+  platform: "Platform capability",
+  industry: "Industry module",
+  phase2: "Phase 2",
+  ai: "AI — Phase 3",
+} as const;
 
 export const PAIN_POINTS = [
   {

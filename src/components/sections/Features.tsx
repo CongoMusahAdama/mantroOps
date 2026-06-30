@@ -8,12 +8,15 @@ import {
   CheckCircle2,
   ClipboardList,
   DraftingCompass,
+  FileStack,
   Layers,
+  MapPin,
   ShieldCheck,
+  Sparkles,
   WifiOff,
 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { FEATURES } from "@/lib/constants";
+import { FEATURES, FEATURE_TIER_LABELS } from "@/lib/constants";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -25,10 +28,31 @@ const ICONS = {
   "check-circle": CheckCircle2,
   "shield-check": ShieldCheck,
   "bar-chart": BarChart3,
+  "map-pin": MapPin,
+  "file-stack": FileStack,
   "wifi-off": WifiOff,
+  sparkles: Sparkles,
+} as const;
+
+const TIER_STYLES = {
+  core: "bg-papaya-soft text-papaya border-papaya/20",
+  platform: "bg-verdemar-soft text-verdemar border-verdemar/20",
+  industry: "bg-surface text-foggy border-border",
+  phase2: "bg-surface text-foggy border-border",
+  ai: "bg-foggy/10 text-foggy border-foggy/20",
 } as const;
 
 type Feature = (typeof FEATURES)[number];
+
+function FeatureTierBadge({ tier }: { tier: Feature["tier"] }) {
+  return (
+    <span
+      className={`inline-flex rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${TIER_STYLES[tier]}`}
+    >
+      {FEATURE_TIER_LABELS[tier]}
+    </span>
+  );
+}
 
 function FeatureTab({
   feature,
@@ -54,20 +78,29 @@ function FeatureTab({
       aria-pressed={isActive}
       className={`flex w-full items-start gap-3 rounded-xl border px-4 py-3.5 text-left transition-colors duration-200 sm:gap-4 sm:px-5 sm:py-4 ${
         isActive
-          ? "border-papaya/25 bg-white shadow-[0_8px_24px_-16px_rgba(79,78,79,0.18)]"
+          ? feature.tier === "core"
+            ? "border-papaya/30 bg-white shadow-[0_8px_24px_-16px_rgba(79,78,79,0.18)]"
+            : "border-verdemar/25 bg-white shadow-[0_8px_24px_-16px_rgba(79,78,79,0.18)]"
           : "border-transparent bg-transparent hover:border-border hover:bg-white/70"
       }`}
     >
       <span
         className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-colors duration-200 ${
           isActive
-            ? "border-papaya/20 bg-papaya-soft text-papaya"
+            ? feature.tier === "core"
+              ? "border-papaya/20 bg-papaya-soft text-papaya"
+              : feature.tier === "ai"
+                ? "border-foggy/20 bg-foggy/10 text-foggy"
+                : "border-verdemar/20 bg-verdemar-soft text-verdemar"
             : "border-border bg-white text-foggy"
         }`}
       >
         <Icon size={18} strokeWidth={1.75} />
       </span>
-      <span className="min-w-0">
+      <span className="min-w-0 flex-1">
+        <span className="mb-1.5 block">
+          <FeatureTierBadge tier={feature.tier} />
+        </span>
         <span
           className={`block font-display text-base ${
             isActive ? "text-foggy" : "text-foggy/85"
@@ -101,7 +134,9 @@ function FeatureChip({
       aria-pressed={isActive}
       className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-colors ${
         isActive
-          ? "border-papaya/30 bg-papaya-soft text-papaya"
+          ? feature.tier === "core"
+            ? "border-papaya/30 bg-papaya-soft text-papaya"
+            : "border-verdemar/30 bg-verdemar-soft text-verdemar"
           : "border-border bg-white text-foggy"
       }`}
     >
@@ -113,6 +148,12 @@ function FeatureChip({
 
 function FeatureDetail({ feature }: { feature: Feature }) {
   const Icon = ICONS[feature.icon];
+  const iconStyle =
+    feature.tier === "core"
+      ? "border-papaya/20 bg-papaya-soft text-papaya"
+      : feature.tier === "ai"
+        ? "border-foggy/20 bg-foggy/10 text-foggy"
+        : "border-verdemar/20 bg-verdemar-soft text-verdemar";
 
   return (
     <motion.div
@@ -120,17 +161,19 @@ function FeatureDetail({ feature }: { feature: Feature }) {
       animate={{ y: 0 }}
       exit={{ y: -6 }}
       transition={{ duration: 0.35, ease }}
-      className="rounded-2xl border border-border bg-white p-5 sm:p-8 lg:p-10"
+      className={`rounded-2xl border bg-white p-5 sm:p-8 lg:p-10 ${
+        feature.tier === "core" ? "border-papaya/20" : "border-border"
+      }`}
     >
       <div className="flex items-start gap-4">
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-papaya/20 bg-papaya-soft text-papaya sm:h-12 sm:w-12">
+        <span
+          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border sm:h-12 sm:w-12 ${iconStyle}`}
+        >
           <Icon size={22} strokeWidth={1.75} />
         </span>
         <div className="min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-verdemar">
-            Planned capability
-          </p>
-          <h3 className="mt-1 font-display text-xl text-foggy sm:text-2xl lg:text-[1.65rem]">
+          <FeatureTierBadge tier={feature.tier} />
+          <h3 className="mt-2 font-display text-xl text-foggy sm:text-2xl lg:text-[1.65rem]">
             {feature.title}
           </h3>
         </div>
@@ -148,7 +191,11 @@ function FeatureDetail({ feature }: { feature: Feature }) {
               key={item}
               className="flex items-start gap-3 text-sm leading-relaxed text-foggy"
             >
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-verdemar" />
+              <span
+                className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${
+                  feature.tier === "core" ? "bg-papaya" : "bg-verdemar"
+                }`}
+              />
               {item}
             </li>
           ))}
@@ -161,6 +208,7 @@ function FeatureDetail({ feature }: { feature: Feature }) {
 export function Features() {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeFeature = FEATURES[activeIndex];
+  const coreCount = FEATURES.filter((f) => f.tier === "core").length;
 
   return (
     <section id="features" className="overflow-x-clip bg-surface py-16 sm:py-20 lg:py-24">
@@ -169,10 +217,16 @@ export function Features() {
           eyebrow="Features"
           title="Everything your maintenance team needs"
           highlight="maintenance"
-          description="A connected toolkit for assets, work orders, maintenance, safety, approvals, reporting, and field work — configured to how your firm operates."
+          description="A connected toolkit for assets, work orders, maintenance, safety, approvals, reporting, and field work — with core modules highlighted from our product foundation."
           align="center"
           className="max-w-2xl"
         />
+
+        <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-foggy">
+          <span className="font-semibold text-papaya">{coreCount} core modules</span>{" "}
+          from our product doc are highlighted — all your existing features remain,
+          with multi-site tracking, document attachments, and AI added.
+        </p>
 
         {/* Mobile: detail on top, swipeable feature chips below */}
         <div className="mt-10 lg:hidden">
